@@ -9,6 +9,14 @@ const LOGS_PATH = `${path.resolve(__dirname)}${path.sep}store${path.sep}`
 const app = express()
 app.use(compression())
 
+app.use((req,res,next) => {
+  console.log(req.path)
+  console.log(req.headers)
+  console.log(req.body)
+
+  next()
+})
+
 app.get('/url:*', async (req, res) => {
   try {
     const content = await axios.get(
