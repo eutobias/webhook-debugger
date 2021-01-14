@@ -15,16 +15,22 @@ app.use((req, res, next) => {
 
 app.get('/url:*', async (req, res) => {
   try {
-    const content = await axios.get(
-      req.params[0],
-      req.body,
-      {
-        headers: req.headers
-      })
+    // const content = await axios.get(
+    //   req.params[0],
+    //   req.body,
+    //   {
+    //     headers: req.headers
+    //   })
 
-    saveLog(req, content)
+    // saveLog(req, content)
 
-    sendResponse(req, res, content)
+    // sendResponse(req, res, content)
+    
+    console.log(req.headers)
+    console.log(req.method)
+    console.log(req.body)
+
+    res.send({})
 
   } catch (_e) {    
     sendResponse(req, res, null, _e)
@@ -40,9 +46,13 @@ app.post('/url:*', async (req, res) => {
     //     headers: req.headers
     //   })
 
-    saveLog(req, null)
+    console.log(req.header)
 
-    sendResponse(req, res, null)
+    res.send({})
+
+    // saveLog(req, null)
+
+    // sendResponse(req, res, null)
 
   } catch (_e) {    
     sendResponse(req, res, null, _e)
