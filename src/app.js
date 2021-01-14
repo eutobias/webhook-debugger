@@ -192,8 +192,7 @@ function getFileName() {
   return `${y}-${m}-${d} ${h}:${i}:${s}:${ms}.json`
 }
 
-function saveLog(sent, _received) {
-  let received = _received || { body:'', headers:''}
+function saveLog(sent, received) {
   const filename = LOGS_PATH + getFileName()
   const output = {
     url: sent.params[0],
@@ -203,8 +202,8 @@ function saveLog(sent, _received) {
       headers: sent.headers
     },
     received: {
-      body: received.body,
-      headers: received.headers
+      body: '',
+      headers: ''
     }
   }
 
