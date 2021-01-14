@@ -1,0 +1,25 @@
+{
+  "name": "rr-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon --inspect=0.0.0.0 src/index.js",
+    "test": "ava --verbose",
+    "test:watch": "ava --verbose --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "loadtest": "^4.0.0",
+    "nodemon": "^2.0.1",
+    "supertest": "^4.0.2"
+  }
+}
