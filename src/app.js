@@ -40,7 +40,7 @@ app.post('/url:*', async (req, res) => {
     //     headers: req.headers
     //   })
 
-    // saveLog(req, content)
+    saveLog(req, null)
 
     sendResponse(req, res, null)
 
