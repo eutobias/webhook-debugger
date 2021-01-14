@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  webhook_debugger:
+    build:
+      context: .
+      args:
+        - NODE_ENV=prod
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 8787:8787
+    command: npm run start
