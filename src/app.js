@@ -220,6 +220,9 @@ function sendResponse(req, res, content, err = null) {
 
     console.log('>>>>>>>>>>')
     console.log('sendResponse: ERROR')
+    console.log(req.path)
+    console.log(req.headers)
+    console.log(req.body)
     console.log(err.response)
     console.log('>>>>>>>>>>')
 
