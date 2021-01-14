@@ -220,9 +220,8 @@ function sendResponse(req, res, content, err = null) {
 
     console.log('>>>>>>>>>>')
     console.log('sendResponse: ERROR')
-    console.log(req.path)
     console.log(req.headers)
-    console.log(err.message)
+    console.log(req.body)
     console.log('>>>>>>>>>>')
 
     res.status(500).end(`Server error: ${err.message}`)
@@ -231,8 +230,8 @@ function sendResponse(req, res, content, err = null) {
 
   console.log('>>>>>>>>>>')
   console.log('sendResponse: DONE')
-  console.log(content.headers)
-  console.log(content.data)
+  console.log(req.headers)
+  console.log(req.body)
   console.log('>>>>>>>>>>')
 
   res.header(content.headers)
