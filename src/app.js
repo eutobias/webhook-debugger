@@ -9,7 +9,7 @@ const LOGS_PATH = `${path.resolve(__dirname)}${path.sep}store${path.sep}`
 const app = express()
 app.use(compression())
 
-app.use((req,res,next) => {
+app.use((req, res, next) => {
   next()
 })
 
@@ -24,11 +24,10 @@ app.get('/url:*', async (req, res) => {
 
     saveLog(req, content)
 
-    res.header(content.headers)
-    res.send(content.data)
+    sendResponse(req, res, content)
 
-  } catch (_e) {
-    res.status(500).end(`Server error: ${_e.message}`)
+  } catch (_e) {    
+    sendResponse(req, res, null, _e)
   }
 })
 
@@ -43,11 +42,10 @@ app.post('/url:*', async (req, res) => {
 
     saveLog(req, content)
 
-    res.header(content.headers)
-    res.send(content.data)
+    sendResponse(req, res, content)
 
-  } catch (_e) {
-    res.status(500).end(`Server error: ${_e.message}`)
+  } catch (_e) {    
+    sendResponse(req, res, null, _e)
   }
 })
 
@@ -62,11 +60,10 @@ app.put('/url:*', async (req, res) => {
 
     saveLog(req, content)
 
-    res.header(content.headers)
-    res.send(content.data)
+    sendResponse(req, res, content)
 
-  } catch (_e) {
-    res.status(500).end(`Server error: ${_e.message}`)
+  } catch (_e) {    
+    sendResponse(req, res, null, _e)
   }
 })
 
@@ -81,11 +78,10 @@ app.patch('/url:*', async (req, res) => {
 
     saveLog(req, content)
 
-    res.header(content.headers)
-    res.send(content.data)
+    sendResponse(req, res, content)
 
-  } catch (_e) {
-    res.status(500).end(`Server error: ${_e.message}`)
+  } catch (_e) {    
+    sendResponse(req, res, null, _e)
   }
 })
 
@@ -100,11 +96,10 @@ app.delete('/url:*', async (req, res) => {
 
     saveLog(req, content)
 
-    res.header(content.headers)
-    res.send(content.data)
+    sendResponse(req, res, content)
 
-  } catch (_e) {
-    res.status(500).end(`Server error: ${_e.message}`)
+  } catch (_e) {    
+    sendResponse(req, res, null, _e)
   }
 })
 
@@ -157,8 +152,8 @@ app.get('/logs', async (req, res) => {
         <ul>${list.join('\n')}</ul>
       `)
     })
-  } catch (_e) {
-    res.status(500).end(`Server error: ${_e.message}`)
+  } catch (_e) {    
+    sendResponse(req, res, null, _e)
   }
 
 })
@@ -178,8 +173,8 @@ app.get('/log/*', async (req, res) => {
       res.send(JSON.parse(data))
     })
 
-  } catch (_e) {
-    res.status(500).end(`Server error: ${_e.message}`)
+  } catch (_e) {    
+    sendResponse(req, res, null, _e)
   }
 
 })
@@ -212,9 +207,34 @@ function saveLog(sent, received) {
     }
   }
 
+  console.log('>>>>>>>>>>')
+  console.log('saveLog')
   console.log(output)
+  console.log('>>>>>>>>>>')
 
   fs.writeFile(filename, JSON.stringify(output, null, 4), () => { })
+}
+
+function sendResponse(req, res, content, err = null) {
+  if (err) {
+
+    console.log('>>>>>>>>>>')
+    console.log('sendResponse: ERROR')
+    console.log(err.response)
+    console.log('>>>>>>>>>>')
+
+    res.status(500).end(`Server error: ${err.message}`)
+    return
+  }
+
+  console.log('>>>>>>>>>>')
+  console.log('sendResponse: DONE')
+  console.log(content.headers)
+  console.log(content.data)
+  console.log('>>>>>>>>>>')
+
+  res.header(content.headers)
+  res.send(content.data)
 }
 
 module.exports = app
