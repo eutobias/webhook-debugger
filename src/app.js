@@ -11,8 +11,10 @@ app.use(compression())
 
 app.use((req,res,next) => {
   console.log(req.path)
+  console.log(req.method)
   console.log(req.headers)
   console.log(req.body)
+  console.log(req.query)
 
   next()
 })
