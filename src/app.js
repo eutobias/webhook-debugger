@@ -33,16 +33,16 @@ app.get('/url:*', async (req, res) => {
 
 app.post('/url:*', async (req, res) => {
   try {
-    const content = await axios.post(
-      req.params[0],
-      req.body,
-      {
-        headers: req.headers
-      })
+    // const content = await axios.post(
+    //   req.params[0],
+    //   req.body,
+    //   {
+    //     headers: req.headers
+    //   })
 
-    saveLog(req, content)
+    // saveLog(req, content)
 
-    sendResponse(req, res, content)
+    sendResponse(req, res, null)
 
   } catch (_e) {    
     sendResponse(req, res, null, _e)
