@@ -10,12 +10,6 @@ const app = express()
 app.use(compression())
 
 app.use((req,res,next) => {
-  console.log(req.path)
-  console.log(req.method)
-  console.log(req.headers)
-  console.log(req.body)
-  console.log(req.query)
-
   next()
 })
 
@@ -217,6 +211,8 @@ function saveLog(sent, received) {
       headers: received.headers
     }
   }
+
+  console.log(output)
 
   fs.writeFile(filename, JSON.stringify(output, null, 4), () => { })
 }
