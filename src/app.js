@@ -223,7 +223,7 @@ function sendResponse(req, res, content, err = null) {
     console.log(req.path)
     console.log(req.headers)
     console.log(req)
-    console.log(err.response)
+    console.log(err)
     console.log('>>>>>>>>>>')
 
     res.status(500).end(`Server error: ${err.message}`)
