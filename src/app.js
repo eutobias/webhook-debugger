@@ -45,8 +45,10 @@ app.post('/url:*', async (req, res) => {
     //   {
     //     headers: req.headers
     //   })
-
-    console.log(req.header)
+    
+    console.log(req.headers)
+    console.log(req.method)
+    console.log(req.body)
 
     res.send({})
 
